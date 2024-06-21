@@ -30,7 +30,12 @@ func main() {
 
 // Handler
 func getEstudantes(c echo.Context) error {
-	return c.String(http.StatusOK, "Lista de todos os estudantes")
+	estudantes, err := db.GetEstudantes()
+	if err != nil {
+		return c.String(http.StatusNotFound, "Falha em obter os estudantes")
+	}
+
+	return c.JSON(http.StatusOK, estudantes)
 }
 
 func createEstudante(c echo.Context) error {

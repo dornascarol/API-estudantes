@@ -39,3 +39,11 @@ func AddEstudante(estudante Estudante) error {
 	fmt.Println("Estudante criado")
 	return nil
 }
+
+func GetEstudantes() ([]Estudante, error) {
+	estudantes := []Estudante{}
+
+	db := Init()
+	err := db.Find(&estudantes).Error
+	return estudantes, err
+}
