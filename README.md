@@ -1,5 +1,16 @@
 # API Estudantes 👩‍🎓 👨‍🎓
-API para gerenciar os estudantes do curso Golang do Zero
+<br>
+
+<h2> Este foi o projeto que aprendi no Curso Golang do Zero </h2>
+API para gerenciar os estudantes cadastrados no Curso Golang do Zero.
+
+## Tecnologias utilizadas
+* VS Code
+* Golang (Go)
+* Echo
+* GORM
+* SQLite
+
 
 ## Rotas
 
@@ -12,7 +23,7 @@ API para gerenciar os estudantes do curso Golang do Zero
 | DELETE | /estudantes/:id | Deletar um estudante específico                  |
 
 
-## Estrutura do estudante:
+## Estrutura do estudante
 - Nome
 - CPF
 - Email
