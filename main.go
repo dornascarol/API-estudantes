@@ -1,70 +1,17 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
+	"log"
 
-	"github.com/dornascarol/API-estudantes/db"
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
+	"github.com/dornascarol/API-estudantes/api"
 )
 
 func main() {
-	// Echo instance
-	e := echo.New()
+	servidor := api.NovoServidor()
 
-	// Middleware
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
+	servidor.ConfigRotas()
 
-	// Routes
-	e.GET("/estudantes", getEstudantes)
-	e.POST("/estudantes", createEstudante)
-	e.GET("/estudantes/:id", getEstudante)
-	e.PUT("/estudantes/:id", updateEstudante)
-	e.DELETE("/estudantes/:id", deleteEstudante)
-
-	// Start server
-	e.Logger.Fatal(e.Start(":8080"))
-}
-
-// Handler
-func getEstudantes(c echo.Context) error {
-	estudantes, err := db.GetEstudantes()
-	if err != nil {
-		return c.String(http.StatusNotFound, "Falha em obter os estudantes")
+	if err := servidor.ComecaServidor(); err != nil {
+		log.Fatal(err)
 	}
-
-	return c.JSON(http.StatusOK, estudantes)
-}
-
-func createEstudante(c echo.Context) error {
-	estudante := db.Estudante{}
-	if err := c.Bind(&estudante); err != nil {
-		return err
-	}
-
-	if err := db.AddEstudante(estudante); err != nil {
-		return c.String(http.StatusInternalServerError, "Erro para cadastrar estudante")
-	}
-
-	return c.String(http.StatusOK, "Estudante cadastrado")
-}
-
-func getEstudante(c echo.Context) error {
-	id := c.Param("id")
-	getStud := fmt.Sprintf("Pega %s estudante", id)
-	return c.String(http.StatusOK, getStud)
-}
-
-func updateEstudante(c echo.Context) error {
-	id := c.Param("id")
-	updateStud := fmt.Sprintf("Atualiza %s estudante", id)
-	return c.String(http.StatusOK, updateStud)
-}
-
-func deleteEstudante(c echo.Context) error {
-	id := c.Param("id")
-	deleteStud := fmt.Sprintf("Deleta %s estudante", id)
-	return c.String(http.StatusOK, deleteStud)
 }
