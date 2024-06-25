@@ -8,6 +8,10 @@ import (
 	"gorm.io/gorm"
 )
 
+type EstudanteManipula struct {
+	DB *gorm.DB
+}
+
 type Estudante struct {
 	gorm.Model
 	Nome  string `json:"nome"`
@@ -28,11 +32,13 @@ func Init() *gorm.DB {
 	return db
 }
 
-func AddEstudante(estudante Estudante) error {
-	db := Init()
+func NewEstudanteManipula(db *gorm.DB) *EstudanteManipula {
+	return &EstudanteManipula{DB: db}
+}
 
-	result := db.Create(&estudante)
-	if result.Error != nil {
+func (s *EstudanteManipula) AddEstudante(estudante Estudante) error {
+
+	if result := s.DB.Create(&estudante); result.Error != nil {
 		return result.Error
 	}
 
@@ -40,10 +46,9 @@ func AddEstudante(estudante Estudante) error {
 	return nil
 }
 
-func GetEstudantes() ([]Estudante, error) {
+func (s *EstudanteManipula) GetEstudantes() ([]Estudante, error) {
 	estudantes := []Estudante{}
 
-	db := Init()
-	err := db.Find(&estudantes).Error
+	err := s.DB.Find(&estudantes).Error
 	return estudantes, err
 }
