@@ -1,9 +1,8 @@
 package main
 
 import (
-	"log"
-
 	"github.com/dornascarol/API-estudantes/api"
+	"github.com/rs/zerolog/log"
 )
 
 func main() {
@@ -12,6 +11,6 @@ func main() {
 	servidor.ConfigRotas()
 
 	if err := servidor.ComecaServidor(); err != nil {
-		log.Fatal(err)
+		log.Fatal().Err(err).Msgf("Falha ao iniciar o servidor")
 	}
 }
