@@ -2,14 +2,21 @@
 <br>
 
 <h2> Este foi o projeto que aprendi no Curso Golang do Zero </h2>
-API para gerenciar os estudantes cadastrados no Curso Golang do Zero.
+API para gerenciar os estudantes no Curso Golang do Zero.
+
+<h2> Introdução </h2>
+O objetivo da aplicação é criar um sistema para controlar os estudantes cadastrados e ativos na plataforma do curso. 
 
 ## Tecnologias utilizadas
 * VS Code
 * Golang (Go)
-* Echo
+* Insomnia
+* Echo v4
 * GORM
-* SQLite
+* SQLite (extensão do VS Code)
+* SQLite Viewer (extensão do VS Code)
+* C++ (extensão do VS Code)
+* Zerolog
 
 
 ## Rotas
