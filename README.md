@@ -13,11 +13,24 @@ O objetivo da aplicação é criar um sistema para controlar os estudantes cadas
 * Insomnia
 * Echo v4
 * GORM
-* SQLite (extensão do VS Code)
-* SQLite Viewer (extensão do VS Code)
-* C++ (extensão do VS Code)
 * Zerolog
 
+## Ferramentas
+Foi instalado a extensão Go no VS Code com a versão 0.41.2
+
+Foi instalado a extensão SQLite no VS Code com a versão 0.14.1
+
+Foi instalado a extensão SQLite Viewer no VS Code com a versão 0.5.8
+
+Foi instalado a extensão C/C++ no VS Code com a versão 1.20.5
+
+Foi usado o programa <a href="https://insomnia.rest/download" target="_blank" > Insomnia </a> para testar as requisições das rotas simulando o Front-end.
+
+Foi usado o framework web <a href="https://github.com/labstack/echo" target="_blank"> ECHO </a> na versão 4.
+
+Foi usado a ferramenta de mapeamento relacional de objetos (ORM) <a href="https://gorm.io/docs/connecting_to_the_database.html" target="_blank"> GORM </a> com conexão ao banco de dados SQLite.
+
+Foi usado o pacote <a href="https://github.com/rs/zerolog" target="_blank"> Zerolog </a> .
 
 ## Rotas
 
