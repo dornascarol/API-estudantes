@@ -56,3 +56,7 @@ func (s *EstudanteManipula) GetEstudante(id int) (Estudante, error) {
 	err := s.DB.First(&estudante, id)
 	return estudante, err.Error
 }
+
+func (s *EstudanteManipula) UpdateEstudante(updateEstudante Estudante) error {
+	return s.DB.Save(&updateEstudante).Error
+}
