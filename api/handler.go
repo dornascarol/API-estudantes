@@ -2,7 +2,6 @@ package api
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -81,9 +80,25 @@ func (api *API) updateEstudante(c echo.Context) error {
 }
 
 func (api *API) deleteEstudante(c echo.Context) error {
-	id := c.Param("id")
-	deleteStud := fmt.Sprintf("Deleta %s estudante", id)
-	return c.String(http.StatusOK, deleteStud)
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		return c.String(http.StatusInternalServerError, "Falha ao obter estudante")
+	}
+
+	estudante, err := api.DB.GetEstudante(id)
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return c.String(http.StatusNotFound, "Estudante não encontrado")
+	}
+
+	if err != nil {
+		return c.String(http.StatusInternalServerError, "Falha ao obter estudante")
+	}
+
+	if err := api.DB.DeleteEstudante(estudante); err != nil {
+		return c.String(http.StatusInternalServerError, "Falha ao deletar estudante")
+	}
+
+	return c.JSON(http.StatusOK, estudante)
 }
 
 func atualizaInfoEstudante(recebeEstudante, estudante db.Estudante) db.Estudante {

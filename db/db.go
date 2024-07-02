@@ -60,3 +60,7 @@ func (s *EstudanteManipula) GetEstudante(id int) (Estudante, error) {
 func (s *EstudanteManipula) UpdateEstudante(updateEstudante Estudante) error {
 	return s.DB.Save(&updateEstudante).Error
 }
+
+func (s *EstudanteManipula) DeleteEstudante(estudante Estudante) error {
+	return s.DB.Delete(&estudante).Error
+}
