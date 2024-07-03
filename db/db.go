@@ -2,22 +2,14 @@ package db
 
 import (
 	"github.com/rs/zerolog/log"
-
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+
+	"github.com/dornascarol/API-estudantes/schemas"
 )
 
 type EstudanteManipula struct {
 	DB *gorm.DB
-}
-
-type Estudante struct {
-	gorm.Model
-	Nome  string `json:"nome"`
-	CPF   int    `json:"cpf"`
-	Email string `json:"email"`
-	Idade int    `json:"idade"`
-	Ativo bool   `json:"ativo"`
 }
 
 func Init() *gorm.DB {
@@ -26,7 +18,7 @@ func Init() *gorm.DB {
 		log.Fatal().Err(err).Msgf("Falha ao inicializar o SQLite: %s", err.Error())
 	}
 
-	db.AutoMigrate(&Estudante{})
+	db.AutoMigrate(&schemas.Estudante{})
 
 	return db
 }
@@ -35,7 +27,7 @@ func NewEstudanteManipula(db *gorm.DB) *EstudanteManipula {
 	return &EstudanteManipula{DB: db}
 }
 
-func (s *EstudanteManipula) AddEstudante(estudante Estudante) error {
+func (s *EstudanteManipula) AddEstudante(estudante schemas.Estudante) error {
 	if result := s.DB.Create(&estudante); result.Error != nil {
 		log.Error().Msg("Falha para cadastrar estudante")
 		return result.Error
@@ -45,22 +37,22 @@ func (s *EstudanteManipula) AddEstudante(estudante Estudante) error {
 	return nil
 }
 
-func (s *EstudanteManipula) GetEstudantes() ([]Estudante, error) {
-	estudantes := []Estudante{}
+func (s *EstudanteManipula) GetEstudantes() ([]schemas.Estudante, error) {
+	estudantes := []schemas.Estudante{}
 	err := s.DB.Find(&estudantes).Error
 	return estudantes, err
 }
 
-func (s *EstudanteManipula) GetEstudante(id int) (Estudante, error) {
-	var estudante Estudante
+func (s *EstudanteManipula) GetEstudante(id int) (schemas.Estudante, error) {
+	var estudante schemas.Estudante
 	err := s.DB.First(&estudante, id)
 	return estudante, err.Error
 }
 
-func (s *EstudanteManipula) UpdateEstudante(updateEstudante Estudante) error {
+func (s *EstudanteManipula) UpdateEstudante(updateEstudante schemas.Estudante) error {
 	return s.DB.Save(&updateEstudante).Error
 }
 
-func (s *EstudanteManipula) DeleteEstudante(estudante Estudante) error {
+func (s *EstudanteManipula) DeleteEstudante(estudante schemas.Estudante) error {
 	return s.DB.Delete(&estudante).Error
 }

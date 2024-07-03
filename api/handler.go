@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/dornascarol/API-estudantes/db"
+	"github.com/dornascarol/API-estudantes/schemas"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 )
@@ -20,7 +20,7 @@ func (api *API) getEstudantes(c echo.Context) error {
 }
 
 func (api *API) createEstudante(c echo.Context) error {
-	estudante := db.Estudante{}
+	estudante := schemas.Estudante{}
 	if err := c.Bind(&estudante); err != nil {
 		return err
 	}
@@ -56,7 +56,7 @@ func (api *API) updateEstudante(c echo.Context) error {
 		return c.String(http.StatusInternalServerError, "Falha ao obter estudante")
 	}
 
-	recebeEstudante := db.Estudante{}
+	recebeEstudante := schemas.Estudante{}
 	if err := c.Bind(&recebeEstudante); err != nil {
 		return err
 	}
@@ -101,7 +101,7 @@ func (api *API) deleteEstudante(c echo.Context) error {
 	return c.JSON(http.StatusOK, estudante)
 }
 
-func atualizaInfoEstudante(recebeEstudante, estudante db.Estudante) db.Estudante {
+func atualizaInfoEstudante(recebeEstudante, estudante schemas.Estudante) schemas.Estudante {
 	if recebeEstudante.Nome != "" {
 		estudante.Nome = recebeEstudante.Nome
 	}
