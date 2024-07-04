@@ -7,6 +7,7 @@ import (
 
 	"github.com/dornascarol/API-estudantes/schemas"
 	"github.com/labstack/echo/v4"
+	"github.com/rs/zerolog/log"
 	"gorm.io/gorm"
 )
 
@@ -20,9 +21,22 @@ func (api *API) getEstudantes(c echo.Context) error {
 }
 
 func (api *API) createEstudante(c echo.Context) error {
-	estudante := schemas.Estudante{}
-	if err := c.Bind(&estudante); err != nil {
+	estudanteSolici := EstudanteSolicita{}
+	if err := c.Bind(&estudanteSolici); err != nil {
 		return err
+	}
+
+	if err := estudanteSolici.Validação(); err != nil {
+		log.Error().Err(err).Msgf("[api] erro ao validar estrutura")
+		return c.String(http.StatusBadRequest, "Erro para validar estudante")
+	}
+
+	estudante := schemas.Estudante{
+		Nome:  estudanteSolici.Nome,
+		CPF:   estudanteSolici.CPF,
+		Email: estudanteSolici.Email,
+		Idade: estudanteSolici.Idade,
+		Ativo: *estudanteSolici.Ativo,
 	}
 
 	if err := api.DB.AddEstudante(estudante); err != nil {
