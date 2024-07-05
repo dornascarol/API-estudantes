@@ -17,7 +17,9 @@ func (api *API) getEstudantes(c echo.Context) error {
 		return c.String(http.StatusNotFound, "Falha em obter os estudantes")
 	}
 
-	return c.JSON(http.StatusOK, estudantes)
+	listaEstudantes := map[string][]schemas.RespostaEstudante{"Estudantes": schemas.NovaResposta(estudantes)}
+
+	return c.JSON(http.StatusOK, listaEstudantes)
 }
 
 func (api *API) createEstudante(c echo.Context) error {
@@ -43,7 +45,7 @@ func (api *API) createEstudante(c echo.Context) error {
 		return c.String(http.StatusInternalServerError, "Erro para cadastrar estudante")
 	}
 
-	return c.String(http.StatusOK, "Estudante cadastrado")
+	return c.JSON(http.StatusOK, estudante)
 }
 
 func (api *API) getEstudante(c echo.Context) error {
