@@ -17,6 +17,17 @@ func (api *API) getEstudantes(c echo.Context) error {
 		return c.String(http.StatusNotFound, "Falha em obter os estudantes")
 	}
 
+	ativo := c.QueryParam("ativo")
+
+	if ativo != "" {
+		ativ, err := strconv.ParseBool(ativo)
+		if err != nil {
+			log.Error().Err(err).Msgf("[api] erro ao analisar o booleano")
+			return c.String(http.StatusInternalServerError, "Falha em analisar o booleano")
+		}
+		estudantes, err = api.DB.GetFiltroEstudanteAtivo(ativ)
+	}
+
 	listaEstudantes := map[string][]schemas.RespostaEstudante{"Estudantes": schemas.NovaResposta(estudantes)}
 
 	return c.JSON(http.StatusOK, listaEstudantes)

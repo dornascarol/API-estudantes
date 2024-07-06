@@ -43,6 +43,12 @@ func (s *EstudanteManipula) GetEstudantes() ([]schemas.Estudante, error) {
 	return estudantes, err
 }
 
+func (s *EstudanteManipula) GetFiltroEstudanteAtivo(ativo bool) ([]schemas.Estudante, error) {
+	filtroEstudantesAtivos := []schemas.Estudante{}
+	err := s.DB.Where("ativo = ?", ativo).Find(&filtroEstudantesAtivos)
+	return filtroEstudantesAtivos, err.Error
+}
+
 func (s *EstudanteManipula) GetEstudante(id int) (schemas.Estudante, error) {
 	var estudante schemas.Estudante
 	err := s.DB.First(&estudante, id)
