@@ -7,7 +7,7 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
 
-	_ "github.com/dornascarol/sistema-estudantes/docs"
+	_ "github.com/dornascarol/API-estudantes/docs"
 )
 
 type API struct {
