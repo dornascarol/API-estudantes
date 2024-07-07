@@ -1,0 +1,97 @@
+info:
+  contact: {}
+paths:
+  /estudantes:
+    get:
+      consumes:
+      - application/json
+      description: Recuperar detalhes dos estudantes
+      parameters:
+      - description: Registro
+        in: path
+        name: registrar
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objeto
+        "404":
+          description: Not Found
+      summary: Obter uma lista de estudantes
+      tags:
+      - estudantes
+    post:
+      consumes:
+      - application/json
+      description: Criar estudante
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objeto
+        "404":
+          description: Not Found
+      summary: Criar estudante
+      tags:
+      - estudantes
+  /estudantes/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Deletar detalhes do estudante
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objeto
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      summary: Deletar estudante
+      tags:
+      - estudantes
+    get:
+      consumes:
+      - application/json
+      description: Recuperar detalhes do estudante usando ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objeto
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      summary: Obter estudante por ID
+      tags:
+      - estudantes
+    put:
+      consumes:
+      - application/json
+      description: Atualizar detalhes do estudante
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objeto
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      summary: Atualizar estudante
+      tags:
+      - estudantes
+swagger: "2.0"
