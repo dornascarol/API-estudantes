@@ -5,7 +5,7 @@
 API para gerenciar os estudantes no Curso Golang do Zero.
 
 <h2> Introdução </h2>
-O objetivo da aplicação é criar um sistema para controlar os estudantes cadastrados e ativos na plataforma do curso. 
+O objetivo da aplicação é criar um sistema para controlar os estudantes cadastrados e ativos na plataforma do curso. Com base nas requisições de GET, POST, PUT e DELETE para cadastrar, listar, atualizar e deletar os perfis. Usando o banco de dados SQLite.
 
 ## Tecnologias utilizadas
 * VS Code
@@ -14,6 +14,7 @@ O objetivo da aplicação é criar um sistema para controlar os estudantes cadas
 * Echo v4
 * GORM
 * Zerolog
+* Swagger
 
 ## Ferramentas
 Foi instalado a extensão Go no VS Code com a versão 0.41.2
@@ -24,6 +25,8 @@ Foi instalado a extensão SQLite Viewer no VS Code com a versão 0.5.8
 
 Foi instalado a extensão C/C++ no VS Code com a versão 1.20.5
 
+Foi instalado a extensão Makefile Tools no VS Code com a versão 0.9.10
+
 Foi usado o programa <a href="https://insomnia.rest/download" target="_blank" > Insomnia </a> para testar as requisições das rotas simulando o Front-end.
 
 Foi usado o framework web <a href="https://github.com/labstack/echo" target="_blank"> ECHO </a> na versão 4.
@@ -31,6 +34,26 @@ Foi usado o framework web <a href="https://github.com/labstack/echo" target="_bl
 Foi usado a ferramenta de mapeamento relacional de objetos (ORM) <a href="https://gorm.io/docs/connecting_to_the_database.html" target="_blank"> GORM </a> com conexão ao banco de dados SQLite.
 
 Foi usado o pacote <a href="https://github.com/rs/zerolog" target="_blank"> Zerolog </a> .
+
+Foi usado o <a href="https://github.com/swaggo/echo-swagger" target="_blank"> Swagger </a> com o Echo.
+
+## Rodando o projeto
+- Comando para rodar o servidor:
+```
+go run main.go
+```
+
+- Parar de rodar o servidor: no terminal clicar nas teclas de "Ctrl" e "C".
+
+- Comando para inicializar o gerenciador de pacotes (go.mod):
+```
+go mod init
+```
+
+- Comando para verificar, atualizar e baixar os módulos no gerenciador de pacotes (go.mod):
+```
+go mod tidy
+```
 
 ## Rotas
 
