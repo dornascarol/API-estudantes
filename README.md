@@ -45,7 +45,7 @@ go run main.go
 
 - Parar de rodar o servidor: no terminal clicar nas teclas de "Ctrl" e "C".
 
-- Comando para inicializar o gerenciador de pacotes (go.mod):
+- Comando para inicializar o gerenciador de pacotes (_go.mod_):
 ```
 go mod init
 ```
@@ -72,3 +72,41 @@ go mod tidy
 - Email
 - Idade
 - Ativo
+
+## Swagger
+A partir da <a href="https://github.com/swaggo/echo-swagger" target="_blank"> documentação </a>, siga com os seguintes passos:
+
+- Comandos para o download do pacote:
+```
+go get -d github.com/swaggo/swag/cmd/swag
+```
+```
+go install github.com/swaggo/swag/cmd/swag@latest
+```
+
+- Comando para inicializar:
+```
+swag init
+```
+
+- Comando para o download da lib echo-swagger:
+```
+go get -u github.com/swaggo/echo-swagger
+```
+
+- Importar no arquivo da _api.go_ seguindo meu usuário:
+```
+echoSwagger "github.com/swaggo/echo-swagger"
+
+_ "github.com/dornascarol/API-estudantes/docs"
+```
+
+- Comando para fazer atualização no gerenciador de pacotes (_go.mod_):
+```
+go mod tidy
+```
+
+- Para testar o Swagger, escreva no navegador a seguinte URL:  
+```
+http://localhost:8080/swagger/index.html
+```
