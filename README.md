@@ -12,6 +12,7 @@ O objetivo da aplicação é criar um sistema para controlar os estudantes cadas
 * Golang (Go)
 * Insomnia
 * Echo v4
+* SQLite
 * GORM
 * Zerolog
 * Swagger
@@ -55,6 +56,11 @@ go mod init
 go mod tidy
 ```
 
+- Depois do Makefile configurado, o novo comando para rodar o servidor:
+```
+make run
+```
+
 ## Rotas
 
 | Método | URL             | Descrição                                        |
@@ -94,7 +100,7 @@ swag init
 go get -u github.com/swaggo/echo-swagger
 ```
 
-- Importar no arquivo da _api.go_ seguindo meu usuário:
+- Importar no arquivo da _api.go_ seguindo meu usuário neste repositório:
 ```
 echoSwagger "github.com/swaggo/echo-swagger"
 
@@ -106,7 +112,15 @@ _ "github.com/dornascarol/API-estudantes/docs"
 go mod tidy
 ```
 
+- Comando para rodar o servidor:
+```            
+go run main.go
+```
+
 - Para testar o Swagger, escreva no navegador a seguinte URL:  
 ```
 http://localhost:8080/swagger/index.html
 ```
+
+## Status do projeto
+:construction: Aplicação em andamento.
