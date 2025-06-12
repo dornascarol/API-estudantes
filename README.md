@@ -1,13 +1,12 @@
-# API Estudantes 👩‍🎓 👨‍🎓
+# Students API 👩‍🎓 👨‍🎓
 <br>
 
-<h2> Este foi o projeto que aprendi no Curso Golang do Zero </h2>
-API para gerenciar os estudantes no Curso Golang do Zero.
+_Project I learned in the Golang do Zero course_
 
-<h2> Introdução </h2>
-O objetivo da aplicação é criar um sistema para controlar os estudantes cadastrados e ativos na plataforma do curso. Com base nas requisições de GET, POST, PUT e DELETE para cadastrar, listar, atualizar e deletar os perfis. Usando o banco de dados SQLite.
+<h2> Introduction </h2>
+The objective of the application is to create a system to control registered and active students on the course platform. Based on GET, POST, PUT and DELETE requests to register, list, update and delete profiles. Using the SQLite database.
 
-## Tecnologias utilizadas
+## Technologies used
 * VS Code
 * Golang (Go)
 * Insomnia
@@ -17,62 +16,62 @@ O objetivo da aplicação é criar um sistema para controlar os estudantes cadas
 * Zerolog
 * Swagger
 
-## Ferramentas
-Foi instalado a extensão Go no VS Code com a versão 0.41.2
+## Tools
+Go extension installed in VS Code with version 0.41.2
 
-Foi instalado a extensão SQLite no VS Code com a versão 0.14.1
+SQLite extension installed in VS Code with version 0.14.1
 
-Foi instalado a extensão SQLite Viewer no VS Code com a versão 0.5.8
+SQLite Viewer extension installed in VS Code with version 0.5.8
 
-Foi instalado a extensão C/C++ no VS Code com a versão 1.20.5
+Installed C/C++ extension in VS Code with version 1.20.5
 
-Foi instalado a extensão Makefile Tools no VS Code com a versão 0.9.10
+Makefile Tools extension installed in VS Code with version 0.9.10
 
-Foi usado o programa <a href="https://insomnia.rest/download" target="_blank" > Insomnia </a> para testar as requisições das rotas simulando o Front-end.
+The program <a href="https://insomnia.rest/download" target="_blank" > Insomnia</a> was used to test route requests by simulating the Front-end.
 
-Foi usado o framework web <a href="https://github.com/labstack/echo" target="_blank"> ECHO </a> na versão 4.
+The web framework <a href="https://github.com/labstack/echo" target="_blank"> ECHO</a> version 4 was used.
 
-Foi usado a ferramenta de mapeamento relacional de objetos (ORM) <a href="https://gorm.io/docs/connecting_to_the_database.html" target="_blank"> GORM </a> com conexão ao banco de dados SQLite.
+The object-relational mapping (ORM) tool <a href="https://gorm.io/docs/connecting_to_the_database.html" target="_blank"> GORM</a> was used to connect to the SQLite database.
 
-Foi usado o pacote <a href="https://github.com/rs/zerolog" target="_blank"> Zerolog </a> .
+The <a href="https://github.com/rs/zerolog" target="_blank"> Zerolog</a> package was used.
 
-Foi usado o <a href="https://github.com/swaggo/echo-swagger" target="_blank"> Swagger </a> com o Echo.
+<a href="https://github.com/swaggo/echo-swagger" target="_blank"> Swagger</a> was used with Echo.
 
-## Rodando o projeto
-- Comando para rodar o servidor:
+## Running the project
+- Command to run the server:
 ```
 go run main.go
 ```
 
-- Parar de rodar o servidor: no terminal clicar nas teclas de "Ctrl" e "C".
+- Stop running the server: in the terminal, click the "Ctrl" and "C" keys.
 
-- Comando para inicializar o gerenciador de pacotes (_go.mod_):
+- Command to initialize the package manager (_go.mod_):
 ```
 go mod init
 ```
 
-- Comando para verificar, atualizar e baixar os módulos no gerenciador de pacotes (go.mod):
+- Command to check, update and download modules in the package manager (_go.mod_):
 ```
 go mod tidy
 ```
 
-- Depois do Makefile configurado, o novo comando para rodar o servidor:
+- After the Makefile is configured, the new command to run the server:
 ```
 make run
 ```
 
-## Rotas
+## Endpoints
 
-| Método | URL             | Descrição                                        |
-| ------ | --------------  | -------------------------------------------------|
-| GET    | /estudantes     | Listar todos os alunos                           |
-| POST   | /estudantes     | Cadastrar um estudante                           |
-| GET    | /estudantes/:id | Pegar a informação de um estudante específico    |
-| PUT    | /estudantes/:id | Atualizar informações de um estudante específico |
-| DELETE | /estudantes/:id | Deletar um estudante específico                  |
+| Method | URL             | Description                                 |
+| ------ | --------------  | --------------------------------------------|
+| GET    | /estudantes     | List all students                           |
+| POST   | /estudantes     | Register a student                          |
+| GET    | /estudantes/:id | Get information about a specific student    |
+| PUT    | /estudantes/:id | Update information for a specific student   |
+| DELETE | /estudantes/:id | Delete a specific student                   |
 
 
-## Estrutura do estudante
+## Student structure
 - Nome
 - CPF
 - Email
@@ -80,9 +79,9 @@ make run
 - Ativo
 
 ## Swagger
-A partir da <a href="https://github.com/swaggo/echo-swagger" target="_blank"> documentação </a>, siga com os seguintes passos:
+From the <a href="https://github.com/swaggo/echo-swagger" target="_blank"> documentation </a>, follow these steps:
 
-- Comandos para o download do pacote:
+- Commands to download the package:
 ```
 go get -d github.com/swaggo/swag/cmd/swag
 ```
@@ -90,37 +89,37 @@ go get -d github.com/swaggo/swag/cmd/swag
 go install github.com/swaggo/swag/cmd/swag@latest
 ```
 
-- Comando para inicializar:
+- Command to initialize:
 ```
 swag init
 ```
 
-- Comando para o download da lib echo-swagger:
+- Command to download the echo-swagger lib:
 ```
 go get -u github.com/swaggo/echo-swagger
 ```
 
-- Importar no arquivo da _api.go_ seguindo meu usuário neste repositório:
+- Import into the _api.go_ file following my user in this repository:
 ```
 echoSwagger "github.com/swaggo/echo-swagger"
 
 _ "github.com/dornascarol/API-estudantes/docs"
 ```
 
-- Comando para fazer atualização no gerenciador de pacotes (_go.mod_):
+- Command to update in the package manager (_go.mod_):
 ```
 go mod tidy
 ```
 
-- Comando para rodar o servidor:
+- Command to run the server:
 ```            
 go run main.go
 ```
 
-- Para testar o Swagger, escreva no navegador a seguinte URL:  
+- To test Swagger, type the following URL into your browser:
 ```
 http://localhost:8080/swagger/index.html
 ```
 
-## Status do projeto
-:construction: Aplicação em andamento.
+## Project status
+:heavy_check_mark: Application completed.
